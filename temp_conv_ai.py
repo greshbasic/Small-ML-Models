@@ -21,7 +21,7 @@ print("Finished training the model...")
 user_input = int(input("Input a temperature in Celsius: "))
 
 guess = model.predict([user_input])[0][0]
-print(f"The model's prediction is: {guess:.2f}")
+print(f"\nThe model's prediction is: {guess:.2f}")
 
 actual_value = (1.8 * user_input) + 32
 print(f"The actual value is: {actual_value:.2f}")
