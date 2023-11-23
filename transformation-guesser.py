@@ -1,8 +1,8 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 import tensorflow as tf
 import numpy as np
-import logging
-logger = tf.get_logger()
-logger.setLevel(logging.ERROR)
+
 
 done = False
 input_array = []
@@ -51,4 +51,13 @@ print("\nFinished training the model...")
 user_input = int(input("Input a number for the model to take a guess on: "))
 
 guess = model.predict([user_input])[0][0]
-print(f"\nThe model's prediction is: {guess}\n")
+rounded_guess = round(guess, 2)
+print(f"\nThe model's prediction is: {rounded_guess}")
+
+w = l0.get_weights()[0][0][0]
+b = l0.get_weights()[1][0]
+
+rounded_w = round(w,2)
+rounded_b = round(b,2)
+
+print(f"The model guesses that your transformation is: {rounded_w}x + {rounded_b}\n")
