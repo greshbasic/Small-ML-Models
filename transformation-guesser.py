@@ -23,7 +23,7 @@ while not done:
     if current_input == "q":
         done = True
     else:
-        input_array.append(int(current_input))
+        input_array.append(float(current_input))
    
 print(f"Your input array is: {input_array}\n")
         
@@ -35,7 +35,7 @@ while not done and i < len(input_array):
     if current_input == "q":
         done = True
     else:
-        transformed_array.append(int(current_input))
+        transformed_array.append(float(current_input))
         i += 1
 print(f"Your transformed array is: {transformed_array}\n")
 print("Training the model...")
@@ -54,7 +54,7 @@ model.compile(
 history = model.fit(input_array, transformed_array, epochs=500, verbose=False)
 print("Finished training the model...\n")
 
-user_input = int(input("Input a number for the model to take a guess on: "))
+user_input = float(input("Input a number for the model to take a guess on: "))
 
 guess = model.predict([user_input])[0][0]
 rounded_guess = round(guess, 2)
@@ -66,19 +66,26 @@ b = l0.get_weights()[1][0]
 operation = ""
 rounded_w = round(w,2)
 rounded_b = round(b,2)
-if rounded_b < 0:
+if rounded_b <= 0:
     operation = "-"
     rounded_b *= -1
 else:
     operation = "+"
 
-print(f"The model guesses that your transformation is: {rounded_w}x {operation} {rounded_b}\n")
-plt.xlabel("Inputted Values")
+string = f"The model guesses that your transformation is: y = {rounded_w}x"
+if rounded_b != 0:
+    string += f" {operation} {rounded_b}\n"
+else:
+    string += "\n"
+print(string)
 
+plt.title("Transformation Trend")
+plt.xlabel("Inputted Values")
 plt.ylabel("Transformed Values")
 plt.scatter(input_array, transformed_array)
 input_array.append(user_input)
-transformed_array.append(rounded_guess)
+transformed_array.append(guess)
 plt.scatter(user_input,rounded_guess, c="red")
 plt.axis([min(input_array)-1,max(input_array)+1,min(transformed_array)-1,max(transformed_array)+1])
+plt.set_window_title("bruh")
 plt.show()
