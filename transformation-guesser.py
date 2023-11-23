@@ -1,5 +1,6 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+
 import tensorflow as tf
 import numpy as np
 
@@ -8,11 +9,12 @@ done = False
 input_array = []
 transformed_array = []
 
-print("\nThis model will predict your transformations. Firstly you will input some numbers.")
-print("Then you will input the result of your transformation on said numbers.")
-print("For example, if your transformation was the doubling of numbers, you would input 1, 5, 8, 13 as the input array")
-print("Then you would input: 2, 10, 16, 26 as the transformed array.\n")
-
+print("--------------------------------------------------------------------------------------------------------------------")
+print("| This model will predict your transformations. Firstly you will input some numbers.                               |")
+print("| Then you will input the result of your transformation on said numbers.                                           |")
+print("| For example, if your transformation was the doubling of numbers, you would input 1, 5, 8, 13 as the input array  |")
+print("| Then you would input: 2, 10, 16, 26 as the transformed array.                                                    |")
+print("--------------------------------------------------------------------------------------------------------------------\n")
 print("Please enter your input array, type 'q' when done: ")
 while not done:
     current_input = input()
@@ -20,6 +22,7 @@ while not done:
         done = True
     else:
         input_array.append(int(current_input))
+   
 print(f"Your input array is: {input_array}\n")
         
 done = False
@@ -33,7 +36,8 @@ while not done and i < len(input_array):
         transformed_array.append(int(current_input))
         i += 1
 print(f"Your transformed array is: {transformed_array}\n")
-    
+print("Training the model...")
+
 input_q = np.array(input_array, dtype=float)
 transformed_a = np.array(transformed_array, dtype=float)
 
@@ -46,7 +50,7 @@ model.compile(
               )
 
 history = model.fit(input_array, transformed_array, epochs=500, verbose=False)
-print("\nFinished training the model...")
+print("Finished training the model...\n")
 
 user_input = int(input("Input a number for the model to take a guess on: "))
 
@@ -57,7 +61,13 @@ print(f"\nThe model's prediction is: {rounded_guess}")
 w = l0.get_weights()[0][0][0]
 b = l0.get_weights()[1][0]
 
+operation = ""
 rounded_w = round(w,2)
 rounded_b = round(b,2)
+if rounded_b < 0:
+    operation = "-"
+    rounded_b *= -1
+else:
+    operation = "+"
 
-print(f"The model guesses that your transformation is: {rounded_w}x + {rounded_b}\n")
+print(f"The model guesses that your transformation is: {rounded_w}x {operation} {rounded_b}\n")
