@@ -30,4 +30,5 @@ transformation-guesser.py:
     Input a number for the model to take a guess on: 6
     1/1 [==============================] - 0s 50ms/step
     
-    The model's prediction is: 6.999999523162842
+    The model's prediction is: 7.0
+    The model guesses that your transformation is: 1.0x + 1.0
