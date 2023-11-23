@@ -32,7 +32,7 @@ while not done and i < len(input_array):
     else:
         transformed_array.append(int(current_input))
         i += 1
-print(f"Your transformed array is: {input_array}\n")
+print(f"Your transformed array is: {transformed_array}\n")
     
 input_q = np.array(input_array, dtype=float)
 transformed_a = np.array(transformed_array, dtype=float)
