@@ -6,6 +6,7 @@ temp_conv_ai.py :
     
     Input a temperature in Celsius: 10
     1/1 [==============================] - 0s 50ms/step
+    
     The model's prediction is: 47.13
     The actual value is: 50.00
     This is a percent error of: 5.75%
