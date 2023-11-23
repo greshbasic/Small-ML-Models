@@ -24,7 +24,7 @@ print(f"Your input array is: {input_array}\n")
         
 done = False
 i = 0
-print("Please enter your transformed array, type 'q' when done: ")
+print("Please enter your transformed array: ")
 while not done and i < len(input_array):
     current_input = input()
     if current_input == "q":
