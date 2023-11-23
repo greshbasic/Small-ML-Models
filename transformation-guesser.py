@@ -3,7 +3,9 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 import tensorflow as tf
 import numpy as np
-
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('TkAgg')
 
 done = False
 input_array = []
@@ -41,7 +43,7 @@ print("Training the model...")
 input_q = np.array(input_array, dtype=float)
 transformed_a = np.array(transformed_array, dtype=float)
 
-l0 = tf.keras.layers.Dense(units=1, input_shape=[1])
+l0 = tf.keras.layers.Dense(units=4, input_shape=[1])
 model = tf.keras.Sequential([l0])
 
 model.compile(
@@ -71,3 +73,12 @@ else:
     operation = "+"
 
 print(f"The model guesses that your transformation is: {rounded_w}x {operation} {rounded_b}\n")
+plt.xlabel("Inputted Values")
+
+plt.ylabel("Transformed Values")
+plt.scatter(input_array, transformed_array)
+input_array.append(user_input)
+transformed_array.append(rounded_guess)
+plt.scatter(user_input,rounded_guess, c="red")
+plt.axis([min(input_array)-1,max(input_array)+1,min(transformed_array)-1,max(transformed_array)+1])
+plt.show()
