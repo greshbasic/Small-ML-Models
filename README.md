@@ -1,4 +1,4 @@
-These are just a few small machine learning models I have made while teaching myself TensorFlow
+These are just a few of the small machine learning models I have made while teaching myself TensorFlow
 
 temp_conv_ai.py : 
     already trained with a few data points, user inputs a temp in C and is given the model's guess as to the equivalent temperature in F
